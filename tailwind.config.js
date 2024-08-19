@@ -1,10 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+  darkMode: ['class'],
   content: [
-    './index.html',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  prefix: '',
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       fontFamily: {
         title: '"Baloo 2", sans-serif',
@@ -21,25 +32,46 @@ export default {
         }],
         'title-base': ['1.5rem', {
           lineHeight: '130%',
-          fontWeight: 'extrabold',
+          fontWeight: 'bolder',
         }],
         'title-lg': ['2rem', {
           lineHeight: '130%',
-          fontWeight: 'extrabold',
+          fontWeight: 'bolder',
         }],
         'title-xl': ['3rem', {
           lineHeight: '130%',
-          fontWeight: 'extrabold',
+          fontWeight: 'bolder',
         }],
-        'text-xs': ['0.75rem', '130%'],
-        'text-sm': ['0.875rem', '130%'],
-        'text-base': ['1rem', '130%'],
-        'text-lg': ['1.25rem', '130%'],
+        'text-xs': ['0.75rem', {
+          lineHeight: '130%',
+          fontWeight: 'bold',
+        }],
+        'text-sm': ['0.875rem', {
+          lineHeight: '130%',
+          fontWeight: 'normal',
+        }],
+        'text-base': ['1rem', {
+          lineHeight: '130%',
+          fontWeight: 'bold',
+        }],
+        'text-lg': ['1.25rem', {
+          lineHeight: '130%',
+          fontWeight: 'bold',
+        }],
 
-        tag: ['0.625rem', '130%'],
+        tag: ['0.625rem', {
+          lineHeight: '130%',
+          fontWeight: 'bold',
+        }],
 
-        'button-base': ['0.75rem', '160%'],
-        'button-lg': ['0.875rem', '160%'],
+        'button-sm': ['0.75rem', {
+          lineHeight: '160%',
+          fontWeight: 'bold',
+        }],
+        'button-lg': ['0.875rem', {
+          lineHeight: '160%',
+          fontWeight: 'bolder',
+        }],
       },
       colors: {
         product: {
@@ -63,7 +95,21 @@ export default {
           title: '#272221',
         },
       },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 }
