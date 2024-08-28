@@ -7,11 +7,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { App } from './App.tsx'
 import { LayoutPage } from './pages/@layout/layoutPage.tsx'
 import { NotFound } from './pages/404notFound/index.tsx'
+import { ErrorPage } from './pages/errorPage/index.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <LayoutPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
