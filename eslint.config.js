@@ -32,7 +32,13 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'simple-import-sort/imports': 'error',
-      '@stylistic/jsx-max-props-per-line': [2, { maximum: 1 }],
+      '@stylistic/jsx-closing-bracket-location': 'error',
+      '@stylistic/jsx-closing-tag-location': 'error',
+      '@stylistic/jsx-first-prop-new-line': ['error', 'multiprop'],
+      '@stylistic/jsx-function-call-newline': ['error', 'always'],
+      '@stylistic/jsx-max-props-per-line': ['error', {
+        maximum: 1,
+      }],
     },
   },
 )

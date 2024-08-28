@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        heroBG: "url('./public/images/hero-bg.svg')",
+      },
       fontFamily: {
         title: '"Baloo 2", sans-serif',
         text: '"Roboto", sans-serif',
