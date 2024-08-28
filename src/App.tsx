@@ -1,7 +1,9 @@
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
 
 import hero from '../public/images/hero.svg'
+import { CardCatalog } from './components/CardCatalog'
 import { Navbar } from './components/Navbar'
+import { Button } from './components/ui/button'
 
 export function App() {
   return (
@@ -10,9 +12,9 @@ export function App() {
       <header className="bg-heroBG mt-[108px] flex justify-center max-xl:gap-0 gap-14 px-40 py-24">
         <section className="flex flex-col gap-16">
           <article className="flex flex-col gap-4 max-w-[588px]">
-            <p className="font-title text-title-xl text-base-title">
+            <h1 className="font-title text-title-xl text-base-title">
               Encontre o café perfeito para qualquer hora do dia
-            </p>
+            </h1>
             <p className="text-base-subtitle text-text-lg">
               Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora
             </p>
@@ -74,6 +76,72 @@ export function App() {
           width={476}
         />
       </header>
+
+      <main className="py-8 px-40">
+        <section className="flex items-center justify-between mb-14">
+          <h2 className="font-title text-title-base text-base-subtitle">
+            Nossos cafés
+          </h2>
+          <nav className="inline-flex items-center gap-2">
+            <Button
+              type="button"
+              size="icon"
+              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+            >
+              Tradicional
+            </Button>
+
+            <Button
+              type="button"
+              size="icon"
+              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+            >
+              Especial
+            </Button>
+
+            <Button
+              type="button"
+              size="icon"
+              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+            >
+              Com Leite
+            </Button>
+
+            <Button
+              type="button"
+              size="icon"
+              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+            >
+              Alcoólico
+            </Button>
+
+            <Button
+              type="button"
+              size="icon"
+              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+            >
+              Gelado
+            </Button>
+          </nav>
+        </section>
+
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-x-8">
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+          <CardCatalog />
+        </section>
+      </main>
     </div>
   )
 }

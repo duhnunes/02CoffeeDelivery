@@ -20,6 +20,9 @@ module.exports = {
       backgroundImage: {
         heroBG: "url('./public/images/hero-bg.svg')",
       },
+      gridTemplateColumns: {
+        autofill: 'repeat(auto-fill, minmax(0, 1fr))',
+      },
       fontFamily: {
         title: '"Baloo 2", sans-serif',
         text: '"Roboto", sans-serif',
