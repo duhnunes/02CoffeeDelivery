@@ -6,12 +6,15 @@ import { Button } from '../ui/button'
 
 export const Navbar = () => {
   return (
-    <nav className="bg-base-background py-8 px-40 flex items-center justify-between fixed top-0 w-full z-10">
+    <nav className="bg-base-background py-8 px-3 gap-2 lg:px-40 flex items-center justify-between fixed top-0 w-full z-10 transition-all duration-500">
       <img
         src={logo}
         alt=""
+        width={85}
+        height={40}
+        className="w-[76px] h-[36px] transition-all"
       />
-      <section className="flex gap-3">
+      <section className="flex gap-1 sm:gap-3 transition-all">
         <Button
           type="button"
           size="icon"

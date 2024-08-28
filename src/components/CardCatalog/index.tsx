@@ -20,7 +20,7 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
   const priceConvertedWhoutSymbol = priceConverted.replace('R$', '')
 
   return (
-    <section className="bg-base-card rounded-md rounded-tr-[36px] rounded-bl-[36px] flex flex-col items-center max-w-[256px] pb-5 justify-center">
+    <section className="bg-base-card rounded-md rounded-tr-[36px] rounded-bl-[36px] flex flex-col items-center max-w-[256px] pb-5 justify-center mx-auto">
       <header className="-translate-y-8 flex flex-col items-center gap-3">
         <img
           className="size-28"

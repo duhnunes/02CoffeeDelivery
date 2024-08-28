@@ -13,17 +13,17 @@ export function App() {
   return (
     <div className="bg-base-background text-base-text font-text">
       <Navbar />
-      <header className="bg-heroBG mt-[108px] flex flex-col justify-center items-center gap-14 px-40 py-24 xl:flex-row">
-        <section className="flex flex-col gap-16">
-          <article className="flex flex-col gap-4 max-w-[588px]">
-            <h1 className="font-title text-title-xl text-base-title">
+      <header className="bg-heroBG pt-[108px] flex flex-col justify-center items-center gap-14 px-5 pb-5 transition-all sm:pt-[120px] lg:flex-row md:pb-16">
+        <section className="flex flex-col gap-6">
+          <article className="flex flex-col gap-2 max-w-[466px] mx-auto md:max-w-[588px]">
+            <h1 className="font-title text-title-lg text-3xl sm:text-title-xl text-base-title transition-all">
               Encontre o café perfeito para qualquer hora do dia
             </h1>
-            <p className="text-base-subtitle text-text-lg">
+            <p className="text-base-subtitle text-text-sm sm:text-text-lg">
               Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora
             </p>
           </article>
-          <article className="grid grid-cols-2 grid-rows-2 gap-5">
+          <article className="grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-5">
             <div className="flex items-center gap-3">
               <span className="p-2 rounded-full bg-product-yellow-dark text-base-background">
                 <ShoppingCart
@@ -78,15 +78,16 @@ export function App() {
           alt=""
           height={360}
           width={476}
+          className="hidden lg:block"
         />
       </header>
 
-      <main className="py-8 px-40">
-        <section className="flex items-center justify-between mb-14">
+      <main className="py-8 px-4">
+        <section className="flex flex-col items-center gap-4 mb-14 px-0 transition-all md:flex-row md:justify-between lg:px-12 xl:px-56">
           <h2 className="font-title text-title-base text-base-subtitle">
             Nossos cafés
           </h2>
-          <nav className="inline-flex items-center gap-2">
+          <nav className="inline-flex items-center gap-2 flex-wrap justify-center">
             <Button
               type="button"
               size="icon"
@@ -129,7 +130,7 @@ export function App() {
           </nav>
         </section>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-x-8">
+        <section className="grid mx-auto grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1280px]">
           {catalog.coffees.map(coffee => {
             return (
               <CardCatalog
