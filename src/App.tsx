@@ -1,11 +1,15 @@
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
+import { useState } from 'react'
 
 import hero from '../public/images/hero.svg'
 import { CardCatalog } from './components/CardCatalog'
 import { Navbar } from './components/Navbar'
 import { Button } from './components/ui/button'
+import coffeeCatalog from './data/coffee.json'
 
 export function App() {
+  const [catalog, setCatalog] = useState(coffeeCatalog)
+
   return (
     <div className="bg-base-background text-base-text font-text">
       <Navbar />
@@ -126,20 +130,11 @@ export function App() {
         </section>
 
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-x-8">
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
-          <CardCatalog />
+          {catalog.coffees.map(coffee => {
+            return (
+              <CardCatalog key={coffee.id} />
+            )
+          })}
         </section>
       </main>
     </div>
