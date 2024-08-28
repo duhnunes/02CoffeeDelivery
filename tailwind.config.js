@@ -24,7 +24,7 @@ module.exports = {
         heroBG: 'cover',
       },
       gridTemplateColumns: {
-        autofill: 'repeat(auto-fill, minmax(0, 1fr))',
+        autofill: 'repeat(auto-fill, minmax(256px, 1fr))',
       },
       fontFamily: {
         title: '"Baloo 2", sans-serif',
