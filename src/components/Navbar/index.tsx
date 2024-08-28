@@ -6,7 +6,7 @@ import { Button } from '../ui/button'
 
 export const Navbar = () => {
   return (
-    <nav className="bg-base-background py-8 px-40 flex items-center justify-between fixed top-0 w-full">
+    <nav className="bg-base-background py-8 px-40 flex items-center justify-between fixed top-0 w-full z-10">
       <img
         src={logo}
         alt=""

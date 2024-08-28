@@ -20,6 +20,9 @@ module.exports = {
       backgroundImage: {
         heroBG: "url('./public/images/hero-bg.svg')",
       },
+      backgroundSize: {
+        heroBG: 'cover',
+      },
       gridTemplateColumns: {
         autofill: 'repeat(auto-fill, minmax(0, 1fr))',
       },

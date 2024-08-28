@@ -13,7 +13,7 @@ export function App() {
   return (
     <div className="bg-base-background text-base-text font-text">
       <Navbar />
-      <header className="bg-heroBG mt-[108px] flex justify-center max-xl:gap-0 gap-14 px-40 py-24">
+      <header className="bg-heroBG mt-[108px] flex flex-col justify-center items-center gap-14 px-40 py-24 xl:flex-row">
         <section className="flex flex-col gap-16">
           <article className="flex flex-col gap-4 max-w-[588px]">
             <h1 className="font-title text-title-xl text-base-title">
@@ -132,7 +132,14 @@ export function App() {
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-x-8">
           {catalog.coffees.map(coffee => {
             return (
-              <CardCatalog key={coffee.id} />
+              <CardCatalog
+                key={coffee.id}
+                badge={coffee.badge}
+                name={coffee.name}
+                description={coffee.description}
+                img={coffee.img}
+                price={coffee.price}
+              />
             )
           })}
         </section>
