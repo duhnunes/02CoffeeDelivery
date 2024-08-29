@@ -7,7 +7,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import rocketseatEslintConfig from '@rocketseat/eslint-config/react.mjs'
 
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
-import stylisticJsx from '@stylistic/eslint-plugin'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default tseslint.config(
   ...rocketseatEslintConfig,
@@ -23,7 +23,7 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSort,
-      '@stylistic/jsx': stylisticJsx,
+      '@stylistic': stylistic,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -32,6 +32,12 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'simple-import-sort/imports': 'error',
+      '@stylistic/jsx-self-closing-comp': ['off', {
+        component: true,
+        html: true,
+      }],
+      'react/self-closing-comp': 'off',
+      '@stylistic/indent': ['error', 2],
       '@stylistic/jsx-closing-bracket-location': 'error',
       '@stylistic/jsx-closing-tag-location': 'error',
       '@stylistic/jsx-first-prop-new-line': ['error', 'multiprop'],

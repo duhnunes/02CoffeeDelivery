@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 import { CardCatalog } from '@/components/CardCatalog'
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 
 import hero from '../../../public/images/hero.svg'
 import coffeeCatalog from '../../data/coffee.json'

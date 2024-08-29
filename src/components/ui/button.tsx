@@ -21,6 +21,7 @@ const buttonVariants = cva(
         icon: 'p-3',
         cart: 'w-full p-3',
         ghost: 'size-3',
+        full: 'w-full py-3 px-2',
       },
     },
     defaultVariants: {
