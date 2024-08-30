@@ -14,13 +14,13 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     return (
       <label
         {...containerProps}
-        className="flex w-[71px] items-center gap-1 rounded bg-base-button px-2 p-3"
+        className="flex w-full justify-between items-center gap-1 rounded bg-base-button px-2 py-1 lg:w-[71px]"
       >
         <Button
           variant="ghost"
           size="ghost"
         >
-          <Minus className="size-5 text-product-purple hover:text-product-purple-dark hover:scale-110 transition-all" />
+          <Minus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
         <Input
           type="tel"
@@ -35,7 +35,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           variant="ghost"
           size="ghost"
         >
-          <Plus className="size-5 text-product-purple hover:text-product-purple-dark hover:scale-110 transition-all" />
+          <Plus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
       </label>
     )
