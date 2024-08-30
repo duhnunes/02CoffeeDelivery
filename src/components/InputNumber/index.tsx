@@ -11,6 +11,15 @@ export interface InputNumberProps
 
 const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
   ({ containerProps, ...props }, ref) => {
+    const [count, setCount] = React.useState(1)
+
+    const handleIncrementDecrement = (action: number) => {
+      const newValue = count + action
+      if (newValue >= 1) {
+        setCount(newValue)
+      }
+    }
+
     return (
       <label
         {...containerProps}
@@ -19,6 +28,8 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         <Button
           variant="ghost"
           size="ghost"
+          onClick={() => handleIncrementDecrement(-1)}
+          disabled={count === 1}
         >
           <Minus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
@@ -26,7 +37,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           type="tel"
           className="text-center bg-base-button outline-none w-[20px] text-base-title text-text-base select-none"
           min={1}
-          defaultValue={1}
+          value={count}
           readOnly
           ref={ref}
           {...props}
@@ -34,6 +45,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         <Button
           variant="ghost"
           size="ghost"
+          onClick={() => handleIncrementDecrement(1)}
         >
           <Plus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
