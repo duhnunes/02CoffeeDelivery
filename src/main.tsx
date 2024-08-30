@@ -9,6 +9,7 @@ import { LayoutPage } from './pages/@layout/layoutPage.tsx'
 import { NotFound } from './pages/404notFound/index.tsx'
 import { Checkout } from './pages/checkout/index.tsx'
 import { ErrorPage } from './pages/errorPage/index.tsx'
+import { Success } from './pages/success/index.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />,
+      },
+      {
+        path: '/success',
+        element: <Success />,
       },
     ],
   },
