@@ -27,7 +27,7 @@ export const Navbar = () => {
             weight="fill"
             className="size-5 text-product-purple-dark"
           />
-          <span className="text-product-purple-dark text-text-sm">
+          <span className="text-product-purple-dark text-text-sm hidden sm:block">
             Porto Alegre, RS
           </span>
         </Button>
