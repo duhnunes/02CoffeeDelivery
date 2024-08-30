@@ -30,7 +30,7 @@ export function Cart() {
           </span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col">
+      <SheetContent className="flex flex-col w-full">
         <SheetHeader>
           <SheetTitle className="uppercase text-center">
             Carrinho de compras
