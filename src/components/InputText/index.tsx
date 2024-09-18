@@ -10,7 +10,7 @@ export interface InputTextProps
 }
 
 const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
-  ({ sufix, className, type, ...props }, ref) => {
+  ({ sufix, className, type = 'text', ...props }, ref) => {
     return (
       <label className="inline-flex items-center w-full rounded border border-base-input bg-base-input has-[:focus-visible]:ring-2 has-[:focus-visible]: has-[:focus-visible]:ring-product-yellow-dark overflow-hidden">
         <Input

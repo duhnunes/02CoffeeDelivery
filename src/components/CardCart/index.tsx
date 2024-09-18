@@ -19,6 +19,7 @@ export function CardCart() {
         <div className="flex flex-col gap-2 w-full sm:flex-row">
           <InputNumber />
           <Button
+            type="button"
             variant="secondary"
             size="secondary"
             className="w-full"

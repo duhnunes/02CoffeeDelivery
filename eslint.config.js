@@ -32,10 +32,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'simple-import-sort/imports': 'error',
-      '@stylistic/jsx-self-closing-comp': ['off', {
-        component: true,
-        html: true,
-      }],
+      '@stylistic/jsx-self-closing-comp': 'off',
       'react/self-closing-comp': 'off',
       '@stylistic/indent': ['error', 2],
       '@stylistic/jsx-closing-bracket-location': 'error',

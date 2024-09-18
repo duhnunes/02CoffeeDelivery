@@ -26,6 +26,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         className="flex w-full justify-between items-center gap-1 rounded bg-base-button px-2 py-1 lg:w-[71px]"
       >
         <Button
+          type="button"
           variant="ghost"
           size="ghost"
           onClick={() => handleIncrementDecrement(-1)}
@@ -43,6 +44,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           {...props}
         />
         <Button
+          type="button"
           variant="ghost"
           size="ghost"
           onClick={() => handleIncrementDecrement(1)}
