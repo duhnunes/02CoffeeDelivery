@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { App } from './App.tsx'
+import { CoffeeProvider } from './contexts/coffeeContext.tsx'
 import { LayoutPage } from './pages/@layout/layoutPage.tsx'
 import { NotFound } from './pages/404notFound/index.tsx'
 import { Checkout } from './pages/checkout/index.tsx'
@@ -39,6 +40,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CoffeeProvider>
+      <RouterProvider router={router} />
+    </CoffeeProvider>
   </StrictMode>,
 )

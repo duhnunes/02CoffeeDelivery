@@ -1,4 +1,7 @@
 import { ShoppingCart } from '@phosphor-icons/react'
+import { useContext } from 'react'
+
+import { CoffeeContext } from '@/contexts/coffeeContext'
 
 import { InputNumber } from '../InputNumber'
 import { Badge } from '../ui/badge'
@@ -13,6 +16,8 @@ interface CardCatalogProps {
 }
 
 export function CardCatalog({ name, description, badge, img, price }: CardCatalogProps) {
+  const { handleAddCoffeeToCart } = useContext(CoffeeContext)
+
   const priceConverted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -48,7 +53,9 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
 
       <footer className="flex items-center justify-between w-full mt-4 px-3">
         <div className="flex items-baseline">
-          <span className="font-text text-text-sm">R$</span>
+          <span className="font-text text-text-sm">
+            R$
+          </span>
           <span className="text-title-base text-base-text font-title">
             {priceConvertedWhoutSymbol}
           </span>
@@ -59,6 +66,7 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
             type="button"
             variant="icon"
             size="icon"
+            onClick={handleAddCoffeeToCart}
           >
             <ShoppingCart
               className="size-5"
