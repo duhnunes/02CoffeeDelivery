@@ -19,14 +19,15 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const newFormValidationSchema = z.object({
-  cpf: z.number().min(11, { message: 'CPF inválido' }),
-  cep: z.number().min(8, { message: 'CEP inválido' }),
-  street: z.string().min(2, { message: 'Rua inválida' }),
-  number: z.number().min(1, { message: 'Número inválido' }),
+  cpf: z.number().min(11),
+  cep: z.number().min(8),
+  street: z.string().min(2).max(128),
+  number: z.number().min(1),
   complement: z.string().optional(),
-  district: z.string().min(2, { message: 'Bairro inválido' }),
+  district: z.string().min(2),
   city: z.string().min(2, { message: 'Cidade inválida' }),
-  uf: z.string().min(2, { message: 'UF inválida' }).max(2, { message: 'UF inválida' }),
+  uf: z.string().min(2, { message: 'Inválido' }).max(2, { message: 'Inválida' }),
+  paymentMethod: z.enum(['credit', 'debit', 'money']),
 })
 
 type NewFormData = z.infer<typeof newFormValidationSchema>
@@ -63,35 +64,34 @@ export function Checkout() {
               </header>
 
               <div className="flex flex-col gap-4">
-                <div className="w-full lg:w-[200px]">
+                <div className="flex flex-col gap-2 relative max-w-[200px]">
                   <InputText
                     type="tel"
                     placeholder="CPF"
                     maxLength={11}
                     {...register('cpf', { valueAsNumber: true })}
-                    className={errors.cpf ? 'border border-red-500 !placeholder-red-500' : ''}
+                    className={errors.cpf ? '!placeholder-red-500' : ''}
                   />
-                  {errors.cpf && (
-                    <span className="text-red-500 text-xs italic">{errors.cpf.message}</span>
-                  )}
+                    <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                      {errors.cpf ? 'O CPF deve ter 11 digitos' : ''}
+                    </span>
                 </div>
-                <div>
-                  <InputText placeholder="Rua" className={errors.street ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
-                  {errors.street && (
-                    <span className="text-red-500 text-xs italic">{errors.street.message}</span>
-                  )}
+                <div className="flex flex-col gap-2 relative">
+                  <InputText placeholder="Rua" className={errors.street ? '!placeholder-red-500 rounded' : ''} />
+                    <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                      {errors.street ? 'A rua deve ter entre 2 à 128 caracteres' : ''}
+                    </span>
                 </div>
                 <div className="flex flex-col items-center gap-3 lg:flex-row">
-                  <div className="w-full lg:w-[200px]">
+                  <div className="flex flex-col gap-2 relative max-w-[200px]">
                     <InputText
                       placeholder="Número"
                       type="tel"
                       {...register('number', { valueAsNumber: true })}
-                      className={errors.number ? 'border border-red-500 !placeholder-red-500 rounded' : ''}
+                      className={errors.number ? '!placeholder-red-500 rounded' : ''}
                     />
-                    {errors.number && (
-                      <span className="text-red-500 text-xs italic">{errors.number.message}</span>
-                    )}
+                      <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                        {errors.number ? 'Número inválido' : ''}</span>
                   </div>
                   <InputText
                     placeholder="Complemento"
@@ -100,28 +100,28 @@ export function Checkout() {
                   />
                 </div>
                 <div className="flex flex-col items-center gap-3 lg:flex-row">
-                  <div className="w-full lg:w-[200px]">
-                    <InputText placeholder="Bairro" {...register('district')} className={errors.district ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
-                    {errors.district && (
-                      <span className="text-red-500 text-xs italic">{errors.district.message}</span>
-                    )}
+                  <div className="flex flex-col gap-2 lg:w-[200px] relative">
+                    <InputText placeholder="Bairro" {...register('district')} className={errors.district ? '!placeholder-red-500 rounded' : ''} />
+                      <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                        {errors.district ? 'Bairro inválido' : ''}
+                      </span>
                   </div>
-                  <div>
-                    <InputText placeholder="Cidade" {...register('city')} className={errors.city ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
-                    {errors.city && (
-                      <span className="text-red-500 text-xs italic">{errors.city.message}</span>
-                    )}
+                  <div className="flex flex-col gap-2 relative flex-1">
+                    <InputText placeholder="Cidade" {...register('city')} className={errors.city ? '!placeholder-red-500 rounded' : ''} />
+                      <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                        {errors.city?.message}
+                      </span>
                   </div>
-                  <div className="w-full lg:w-14">
+                  <div className="w-full lg:w-14 flex flex-col gap-2 relative">
                     <InputText
                       placeholder="UF"
-                      className={errors.uf ? 'uppercase border border-red-500 !placeholder-red-500 rounded' : 'uppercase'}
+                      className={errors.uf ? 'uppercase !placeholder-red-500 rounded' : 'uppercase'}
                       maxLength={2}
                       {...register('uf')}
                     />
-                    {errors.uf && (
-                      <span className="text-red-500 text-xs italic">{errors.uf.message}</span>
-                    )}
+                      <span className="text-red-500 text-xs italic absolute bottom-0 left-2">
+                        {errors.uf?.message}
+                      </span>
                   </div>
                 </div>
               </div>
