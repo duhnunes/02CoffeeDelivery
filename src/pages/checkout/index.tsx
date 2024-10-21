@@ -13,11 +13,38 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
+
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const newFormValidationSchema = z.object({
+  cpf: z.number().min(11, { message: 'CPF inválido' }),
+  cep: z.number().min(8, { message: 'CEP inválido' }),
+  street: z.string().min(2, { message: 'Rua inválida' }),
+  number: z.number().min(1, { message: 'Número inválido' }),
+  complement: z.string().optional(),
+  district: z.string().min(2, { message: 'Bairro inválido' }),
+  city: z.string().min(2, { message: 'Cidade inválida' }),
+  uf: z.string().min(2, { message: 'UF inválida' }).max(2, { message: 'UF inválida' }),
+})
+
+type NewFormData = z.infer<typeof newFormValidationSchema>
+
 export function Checkout() {
+  const { register, handleSubmit, formState: { errors } } = useForm<NewFormData>({
+    resolver: zodResolver(newFormValidationSchema)
+  })
+
+  function handleCreateOrder(data: NewFormData){
+    console.log(data)
+  }
+  
   return (
     <div className="w-svw min-h-svh bg-base-background font-text text-text-base text-base-text pt-[108px] justify-center">
       <main className="flex flex-col md:mx-5 md:gap-2 lg:gap-8 sm:items-start lg:justify-center sm:flex-row">
-        <form className="flex flex-col gap-2 mx-3 md:mx-0">
+        <form onSubmit={handleSubmit(handleCreateOrder)} className="flex gap-2">
+        <div className="space-y-2">
           <h2 className="font-title text-title-xs text-base-subtitle">
             Complete seu pedido
           </h2>
@@ -41,32 +68,60 @@ export function Checkout() {
                     type="tel"
                     placeholder="CPF"
                     maxLength={11}
+                    {...register('cpf', { valueAsNumber: true })}
+                    className={errors.cpf ? 'border border-red-500 !placeholder-red-500' : ''}
                   />
+                  {errors.cpf && (
+                    <span className="text-red-500 text-xs italic">{errors.cpf.message}</span>
+                  )}
                 </div>
-                <InputText placeholder="Rua" />
+                <div>
+                  <InputText placeholder="Rua" className={errors.street ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
+                  {errors.street && (
+                    <span className="text-red-500 text-xs italic">{errors.street.message}</span>
+                  )}
+                </div>
                 <div className="flex flex-col items-center gap-3 lg:flex-row">
                   <div className="w-full lg:w-[200px]">
                     <InputText
                       placeholder="Número"
                       type="tel"
+                      {...register('number', { valueAsNumber: true })}
+                      className={errors.number ? 'border border-red-500 !placeholder-red-500 rounded' : ''}
                     />
+                    {errors.number && (
+                      <span className="text-red-500 text-xs italic">{errors.number.message}</span>
+                    )}
                   </div>
                   <InputText
                     placeholder="Complemento"
                     sufix="Opcional"
+                    {...register('complement')}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-3 lg:flex-row">
                   <div className="w-full lg:w-[200px]">
-                    <InputText placeholder="Bairro" />
+                    <InputText placeholder="Bairro" {...register('district')} className={errors.district ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
+                    {errors.district && (
+                      <span className="text-red-500 text-xs italic">{errors.district.message}</span>
+                    )}
                   </div>
-                  <InputText placeholder="Cidade" />
+                  <div>
+                    <InputText placeholder="Cidade" {...register('city')} className={errors.city ? 'border border-red-500 !placeholder-red-500 rounded' : ''} />
+                    {errors.city && (
+                      <span className="text-red-500 text-xs italic">{errors.city.message}</span>
+                    )}
+                  </div>
                   <div className="w-full lg:w-14">
                     <InputText
                       placeholder="UF"
-                      className="uppercase"
+                      className={errors.uf ? 'uppercase border border-red-500 !placeholder-red-500 rounded' : 'uppercase'}
                       maxLength={2}
+                      {...register('uf')}
                     />
+                    {errors.uf && (
+                      <span className="text-red-500 text-xs italic">{errors.uf.message}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -116,7 +171,7 @@ export function Checkout() {
             </article>
 
           </section>
-        </form>
+        </div>
 
         <section className="flex flex-col gap-2 mx-3 mb-3 md:mx-0">
           <h2 className="font-title text-title xs text-base-subtitle">
@@ -165,7 +220,7 @@ export function Checkout() {
             </div>
 
             <Button
-              type="button"
+              type="submit"
               variant="primary"
               size="full"
             >
@@ -173,6 +228,7 @@ export function Checkout() {
             </Button>
           </article>
         </section>
+        </form>
       </main>
     </div>
   )
