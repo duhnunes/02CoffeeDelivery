@@ -17,6 +17,7 @@ import {
 
 export function Cart() {
   const { coffeeList } = useContext(CoffeeContext)
+  const totalCoffee = coffeeList.length
 
   return (
     <Sheet>
@@ -31,9 +32,11 @@ export function Cart() {
             className="size-5"
             weight="fill"
           />
-          <span className="absolute -top-1 -right-1 bg-product-yellow-dark rounded-full size-4 text-base-white flex items-center justify-center text-text-sm">
-            1
-          </span>
+            {coffeeList.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-product-yellow-dark rounded-full size-4 text-base-white flex items-center justify-center text-text-sm">
+                {totalCoffee}
+              </span>
+            )}
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full" aria-describedby={undefined}>

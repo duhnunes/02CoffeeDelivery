@@ -70,6 +70,7 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
             {priceConvertedWhoutSymbol}
           </span>
         </div>
+
         <div className="flex items-center gap-2">
           <InputNumber />
           <Button

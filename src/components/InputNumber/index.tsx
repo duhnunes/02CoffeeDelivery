@@ -23,7 +23,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     return (
       <label
         {...containerProps}
-        className="flex w-full justify-between items-center gap-1 rounded bg-base-button px-2 py-1 lg:w-[71px]"
+        className="flex w-full justify-between items-center gap-1 rounded bg-base-button p-3 lg:w-[71px]"
       >
         <Button
           type="button"
