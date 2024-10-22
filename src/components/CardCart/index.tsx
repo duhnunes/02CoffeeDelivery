@@ -2,6 +2,8 @@ import { Trash } from '@phosphor-icons/react'
 
 import { InputNumber } from '../InputNumber'
 import { Button } from '../ui/button'
+import { useContext } from 'react'
+import { CoffeeContext } from '@/contexts/coffeeContext'
 
 interface CardCartProps {
   coffee: {
@@ -15,16 +17,22 @@ interface CardCartProps {
 }
 
 export function CardCart({ coffee }: CardCartProps) {
+  const { removeCoffeToCart } = useContext(CoffeeContext)
+  
+  function handleRemoveCoffee() {
+    removeCoffeToCart(coffee)
+  }
+  
   return(
-    <section className="bg-base-card flex items-start px-1 py-2 justify-between rounded-md">
+    <section className="bg-base-card flex items-start px-1 py-2 gap-2 rounded-md mt-1">
       <img
       className="size-10 lg:size-16 sm:hidden lg:block"
       src={coffee.img}
       alt=""
     />
     
-    <article className="flex flex-col items-start gap-2">
-      <header className="flex items-center gap-2">
+    <article className="flex flex-col items-start gap-2 flex-1">
+      <header className="flex items-center w-full justify-between">
         <span className="text-text-base text-base-subtitle font-title text-center sm:text-text-base sm:self-center md:text-text-sm lg:text-start lg:text-title-sm">
           {coffee.name}
         </span>
@@ -42,6 +50,7 @@ export function CardCart({ coffee }: CardCartProps) {
           variant="danger"
           size="secondary"
           className="w-full"
+          onClick={handleRemoveCoffee}
         >
           <Trash className="size-4 shrink-0" />
           Remover
