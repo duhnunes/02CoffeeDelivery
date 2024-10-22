@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-product-yellow text-base-white hover:bg-product-yellow-dark text-button-lg',
+        primary: 'bg-product-yellow !text-base-white hover:bg-product-yellow-dark text-button-lg',
         secondary: 'bg-base-button text-base-text hover:bg-base-hover hover:text-base-subtitle text-button-sm',
         icon: 'bg-product-purple-dark text-base-card hover:bg-product-purple',
         cart: 'bg-product-yellow-light text-product-yellow-dark hover:bg-product-yellow-light/85',

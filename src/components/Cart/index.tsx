@@ -69,8 +69,8 @@ export function Cart() {
             type="button"
             variant="primary"
             size="cart"
-            disabled={totalCoffee === 0}
             onClick={handleCheckout}
+            disabled={totalCoffee === 0}
           >
               Finalizar Compra
           </Button>

@@ -89,7 +89,7 @@ export function Home() {
             <Button
               type="button"
               size="icon"
-              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+              className="rounded-full bg-base-background border border-product-yellow !text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
             >
               Tradicional
             </Button>
@@ -97,7 +97,7 @@ export function Home() {
             <Button
               type="button"
               size="icon"
-              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+              className="rounded-full bg-base-background border border-product-yellow !text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
             >
               Especial
             </Button>
@@ -105,7 +105,7 @@ export function Home() {
             <Button
               type="button"
               size="icon"
-              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+              className="rounded-full bg-base-background border border-product-yellow !text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
             >
               Com Leite
             </Button>
@@ -113,7 +113,7 @@ export function Home() {
             <Button
               type="button"
               size="icon"
-              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+              className="rounded-full bg-base-background border border-product-yellow !text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
             >
               Alcoólico
             </Button>
@@ -121,7 +121,7 @@ export function Home() {
             <Button
               type="button"
               size="icon"
-              className="rounded-full bg-base-background border border-product-yellow text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
+              className="rounded-full bg-base-background border border-product-yellow !text-product-yellow-dark text-tag py-[6px] px-3 hover:bg-product-yellow-light"
             >
               Gelado
             </Button>
