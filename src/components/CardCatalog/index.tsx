@@ -1,36 +1,37 @@
-import { ShoppingCart } from '@phosphor-icons/react'
-import { useContext } from 'react'
-
-import { CoffeeContext } from '@/contexts/coffeeContext'
-
-import { InputNumber } from '../InputNumber'
-import { Badge } from '../ui/badge'
-import { Button } from '../ui/button'
+import { ShoppingCart } from '@phosphor-icons/react';
+import { useContext, useState } from 'react';
+import { CoffeeContext } from '@/contexts/coffeeContext';
+import { InputNumber } from '../InputNumber';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
 
 interface CardCatalogProps {
-  name: string
-  description: string
-  badge: string[]
-  img: string
-  price: string
+  name: string;
+  description: string;
+  badge: string[];
+  img: string;
+  price: string;
 }
 
 export function CardCatalog({ name, description, badge, img, price }: CardCatalogProps) {
-  const { catalog, createCoffeeToCart } = useContext(CoffeeContext)
+  const { catalog, createCoffeeToCart } = useContext(CoffeeContext);
+  const [quantity, setQuantity] = useState(1);
 
   const priceConverted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(Number(price))
-  const priceConvertedWhoutSymbol = priceConverted.replace('R$', '')
+  }).format(Number(price));
+  const priceConvertedWithoutSymbol = priceConverted.replace('R$', '');
 
-  const coffee = catalog.find((item) => item.name === name)
+  const coffee = catalog.find(c => c.name === name);
 
-  function handleAddCoffee(){
-    if(coffee){
-      createCoffeeToCart(coffee)
-    } else{
-      console.error('Café não encontrado no catálogo')
+  function handleAddCoffee() {
+    if (coffee) {
+      const coffeeWithQuantity = { ...coffee, quantity }
+      createCoffeeToCart(coffeeWithQuantity)
+      setQuantity(1)
+    } else {
+      console.error("Café não encontrado no catálogo")
     }
   }
 
@@ -48,7 +49,7 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
           {badge.map((item, index) => {
             return (
               <Badge key={index}>{item}</Badge>
-            )
+            );
           })}
         </div>
       </header>
@@ -60,19 +61,17 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
           {description}
         </p>
       </article>
-
       <footer className="flex items-center justify-between w-full mt-4 px-3">
         <div className="flex items-baseline">
           <span className="font-text text-text-sm">
             R$
           </span>
           <span className="text-title-base text-base-text font-title">
-            {priceConvertedWhoutSymbol}
+            {priceConvertedWithoutSymbol}
           </span>
         </div>
-
         <div className="flex items-center gap-2">
-          <InputNumber />
+          <InputNumber value={quantity} onChange={setQuantity} />
           <Button
             type="button"
             variant="icon"
@@ -87,5 +86,5 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
         </div>
       </footer>
     </section>
-  )
+  );
 }

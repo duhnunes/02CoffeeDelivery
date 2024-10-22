@@ -13,6 +13,7 @@ interface CardCartProps {
     badge: string[]
     img: string
     price: string
+    quantity: number
   }
 }
 
@@ -44,7 +45,7 @@ export function CardCart({ coffee }: CardCartProps) {
         </div>
       </header>
       <div className="flex gap-2">
-        <InputNumber />
+        <InputNumber value={coffee.quantity} onChange={() => {}} />
         <Button
           type="button"
           variant="danger"

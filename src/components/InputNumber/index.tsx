@@ -1,24 +1,29 @@
-import { Minus, Plus } from '@phosphor-icons/react'
-import * as React from 'react'
+import { Minus, Plus } from '@phosphor-icons/react';
+import * as React from 'react';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-
-export interface InputNumberProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  containerProps?: React.HTMLProps<HTMLLabelElement>
+export interface InputNumberProps {
+  containerProps?: React.HTMLProps<HTMLLabelElement>;
+  value: number;
+  onChange: (count: number) => void;
 }
 
 const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
-  ({ containerProps, ...props }, ref) => {
-    const [count, setCount] = React.useState(1)
+  ({ containerProps, value, onChange, ...props }, ref) => {
+    const [internalValue, setInternalValue] = React.useState(value);
+
+    React.useEffect(() => {
+      setInternalValue(value);
+    }, [value]);
 
     const handleIncrementDecrement = (action: number) => {
-      const newValue = count + action
+      const newValue = internalValue + action;
       if (newValue >= 1) {
-        setCount(newValue)
+        setInternalValue(newValue);
+        onChange(newValue);
       }
-    }
+    };
 
     return (
       <label
@@ -30,7 +35,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           variant="ghost"
           size="ghost"
           onClick={() => handleIncrementDecrement(-1)}
-          disabled={count === 1}
+          disabled={internalValue === 1}
         >
           <Minus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
@@ -38,7 +43,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           type="tel"
           className="text-center bg-base-button outline-none w-[20px] text-base-title text-text-base select-none"
           min={1}
-          value={count}
+          value={internalValue}
           readOnly
           ref={ref}
           {...props}
@@ -52,9 +57,9 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           <Plus className="size-4 text-product-purple shrink-0 hover:text-product-purple-dark hover:scale-110 transition-all" />
         </Button>
       </label>
-    )
+    );
   },
-)
-InputNumber.displayName = 'InputNumber'
+);
 
-export { InputNumber }
+InputNumber.displayName = 'InputNumber';
+export { InputNumber };

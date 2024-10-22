@@ -13,6 +13,7 @@ interface coffeeContextData {
   description: string
   img: string
   price: string
+  quantity: number
 }
 
 interface coffeeContextType {
@@ -34,11 +35,9 @@ export function CoffeeProvider({ children }: coffeeContextProps) {
 
   const createCoffeeToCart = (coffee: coffeeContextData) => {
     setCoffeeList([...coffeeList, coffee])
-    console.log("Café adicionado: ", coffee)
   }
   const removeCoffeToCart = (coffee: coffeeContextData) => {
     setCoffeeList((prevCoffeeList) => prevCoffeeList.filter((item) => item.id !== coffee.id));
-    console.log('Café removido: ', coffee)
   }
 
   return (
