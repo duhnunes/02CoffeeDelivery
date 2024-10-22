@@ -14,10 +14,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet'
+import { useNavigate } from 'react-router-dom'
 
 export function Cart() {
   const { coffeeList } = useContext(CoffeeContext)
   const totalCoffee = coffeeList.length
+
+  const navigate = useNavigate()
+
+  function handleCheckout() {
+    if(totalCoffee > 0) {
+      navigate('/checkout')
+    }
+  }
 
   return (
     <Sheet>
@@ -60,8 +69,10 @@ export function Cart() {
             type="button"
             variant="primary"
             size="cart"
+            disabled={totalCoffee === 0}
+            onClick={handleCheckout}
           >
-            Finalizar Compra
+              Finalizar Compra
           </Button>
         </SheetFooter>
       </SheetContent>

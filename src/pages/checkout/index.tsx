@@ -17,6 +17,9 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
+import { CoffeeContext } from '@/contexts/coffeeContext'
+import { useNavigate } from 'react-router-dom'
 
 const newFormValidationSchema = z.object({
   cpf: z.number().min(11),
@@ -33,6 +36,14 @@ const newFormValidationSchema = z.object({
 type NewFormData = z.infer<typeof newFormValidationSchema>
 
 export function Checkout() {
+  const { coffeeList } = useContext(CoffeeContext)
+  const navigate = useNavigate()
+  const ifCoffeeListWithoutCoffee = coffeeList.length === 0
+
+  if(ifCoffeeListWithoutCoffee) {
+    navigate('/')
+  }
+
   const { register, handleSubmit, formState: { errors } } = useForm<NewFormData>({
     resolver: zodResolver(newFormValidationSchema)
   })
@@ -180,16 +191,19 @@ export function Checkout() {
 
           <article className="flex flex-col gap-8 bg-base-card rounded-md py-5 px-2 w-full md:p-5 xl:p-10">
             <ScrollArea className="h-[180px]">
-              <CardCart />
-              <Separator className="bg-base-label my-px" />
-              <CardCart />
-              <Separator className="bg-base-label my-px" />
-              <CardCart />
-              <Separator className="bg-base-label my-px" />
-              <CardCart />
-              <Separator className="bg-base-label my-px" />
-              <CardCart />
-              <Separator className="bg-base-label my-px" />
+              {coffeeList.map((items) => {
+                return (
+                  <div key={items.id}>
+                    <CardCart
+                      
+                      coffee={items}
+                    />
+                    {coffeeList.length > 1 && (
+                      <Separator className="bg-base-label my-px" />
+                    )}
+                  </div>
+                )
+              })}
             </ScrollArea>
 
             <div className="flex flex-col gap-3">
