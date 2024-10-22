@@ -16,13 +16,23 @@ interface CardCatalogProps {
 }
 
 export function CardCatalog({ name, description, badge, img, price }: CardCatalogProps) {
-  const { handleAddCoffeeToCart } = useContext(CoffeeContext)
+  const { catalog, createCoffeeToCart } = useContext(CoffeeContext)
 
   const priceConverted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(Number(price))
   const priceConvertedWhoutSymbol = priceConverted.replace('R$', '')
+
+  const coffee = catalog.find((item) => item.name === name)
+
+  function handleAddCoffee(){
+    if(coffee){
+      createCoffeeToCart(coffee)
+    } else{
+      console.error('Café não encontrado no catálogo')
+    }
+  }
 
   return (
     <section className="bg-base-card rounded-md rounded-tr-[36px] rounded-bl-[36px] flex flex-col items-center max-w-[256px] pb-5 justify-center mx-auto">
@@ -66,7 +76,7 @@ export function CardCatalog({ name, description, badge, img, price }: CardCatalo
             type="button"
             variant="icon"
             size="icon"
-            onClick={handleAddCoffeeToCart}
+            onClick={handleAddCoffee}
           >
             <ShoppingCart
               className="size-5"

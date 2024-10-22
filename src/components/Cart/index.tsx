@@ -47,7 +47,7 @@ export function Cart() {
             return (
               <CardCart
                 key={items.id}
-                {...items}
+                coffee={items}
               />
             )
           })}

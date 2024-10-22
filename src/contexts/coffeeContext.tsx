@@ -1,8 +1,6 @@
 import {
   createContext,
-  Dispatch,
   ReactNode,
-  SetStateAction,
   useState,
 } from 'react'
 
@@ -20,8 +18,7 @@ interface coffeeContextData {
 interface coffeeContextType {
   catalog: coffeeContextData[]
   coffeeList: coffeeContextData[]
-  setCoffeeList: Dispatch<SetStateAction<never[]>>
-  handleAddCoffeeToCart: () => void
+  createCoffeeToCart: (coffee: coffeeContextData) => void
 }
 
 interface coffeeContextProps {
@@ -32,19 +29,18 @@ export const CoffeeContext = createContext({} as coffeeContextType)
 
 export function CoffeeProvider({ children }: coffeeContextProps) {
   const catalog = coffeeCatalog.coffees
-  const [coffeeList, setCoffeeList] = useState([])
+  const [coffeeList, setCoffeeList] = useState<coffeeContextData[]>([])
 
-  const handleAddCoffeeToCart = () => {
-    // setCoffeeList([...coffeeList, catalog.map((item) => item.id)])
-    console.log("Estou perdido...")
+  const createCoffeeToCart = (coffee: coffeeContextData) => {
+    setCoffeeList([...coffeeList, coffee])
+    console.log("Café adicionado: ", coffee)
   }
 
   return (
     <CoffeeContext.Provider value={{
       catalog,
       coffeeList,
-      setCoffeeList,
-      handleAddCoffeeToCart,
+      createCoffeeToCart,
     }}
     >
       {children}
