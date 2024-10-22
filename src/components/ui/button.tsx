@@ -14,6 +14,7 @@ const buttonVariants = cva(
         icon: 'bg-product-purple-dark text-base-card hover:bg-product-purple',
         cart: 'bg-product-yellow-light text-product-yellow-dark hover:bg-product-yellow-light/85',
         ghost: 'bg-transparent',
+        danger: 'bg-red-500 text-button-sm !text-white hover:bg-red-600'
       },
       size: {
         primary: 'w-[132px] px-2 py-3',

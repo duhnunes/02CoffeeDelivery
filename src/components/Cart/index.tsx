@@ -36,7 +36,7 @@ export function Cart() {
           </span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full">
+      <SheetContent className="flex flex-col w-full" aria-describedby={undefined}>
         <SheetHeader>
           <SheetTitle className="uppercase text-center">
             Carrinho de compras
